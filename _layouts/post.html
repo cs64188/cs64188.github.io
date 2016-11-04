@@ -1,67 +1,50 @@
 ---
 layout: default
 ---
- 
-<div class="wrapper wrapper-content  animated fadeInRight article">
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <div class="pull-right">
-                    	{% for category in page.categories %}
-                        	<button class="btn btn-white btn-xs" type="button">{{ category }}</button>
-                        {% endfor %}
-                    </div>
-                    <div class="text-center article-title">
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ page.date | date: "%-d %b %Y" }}</span>
-                        <h1>
-                            {{ page.title }}
-                        </h1>
-                    </div>
-                    	{{ content }}
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                                <h5 style="display: inline;">Tags:</h5>
-                                {% for tag in page.tags %}
-                                    <button class="btn btn-white btn-xs" type="button">{{ tag }}</button>
-                                {% endfor %}
-                        </div>
-                        <div class="col-md-6">
-                            <div class="small text-right">
-                                <h5>Stats:</h5>
-                                <div> 
-                                {% if site.changyan %}
-                                    <i class="fa fa-comments-o"> </i> <span id = "url::{{post.url | prepend: page.url}}" class = "cy_cmt_count" ></span> comments
-                                {% endif %}
-                                {% if site.disqus %}
-                                <i class="fa fa-comments-o"> </i> <span class='disqus-comment-count' data-disqus-url="{{ site.url }}{{ page.url }}">0</span> comments
-                                {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- donate -->
-                            {% if site.donate %}
-                                {% include donate.html %}
-                            {% endif %}
-                            <br>
-                            <!-- share -->
-                            {% if site.bshare %}
-                                {% include share.html %}
-                            {% endif %}
-                            <br>
-                            <!-- comment -->
-                            {% include comments.html %}
-                        </div>
-                    </div>
 
+<!-- Post Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>{{ page.title }}</h1>
+                    {% if page.subtitle %}
+                    <h2 class="subheading">{{ page.subtitle }}</h2>
+                    {% endif %}
+                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
             </div>
         </div>
     </div>
+</header>
 
-</div>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				{{ content }}
+
+                <hr>
+
+                <ul class="pager">
+                    {% if page.previous.url %}
+                    <li class="previous">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                    </li>
+                    {% endif %}
+                    {% if page.next.url %}
+                    <li class="next">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
