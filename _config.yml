@@ -1,15 +1,15 @@
 # Site settings
-name: Less Or More
-email: luoyan35714@126.com
-author: Freud Kang
+name: 陆小牛的技术格
+email: 510889826@qq.com
+author: TomyL
 url: https://cs64188.github.io/
-resume_site: https://cs64188.github.io/
-github: https://cs64188.github.io/
+resume_site: https://github.com/cs64188
+github: https://github.com/cs64188
 baseurl: ""
-description: Actually, less is more!
+description: 1.01^365 > 0.99^365
 meta_description: 陆小牛;个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休
-motto: It's our wits that make us men.
-banner: 学而不思则罔，思而不学则殆。
+motto: 多睡，多学
+banner: 要开心。
 
 #permalink: /:categories/:year/:month/:day/:title/
 permalink: /:year/:month/:day/:title/
@@ -17,7 +17,7 @@ paginate: 10
 
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
-github_username: luoyan35714
+github_username: cs64188
 highlighter: rouge
 
 # Build settings

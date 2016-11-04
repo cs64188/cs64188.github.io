@@ -7117,3 +7117,7 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.titleText{
+  font-size: 29px;
+}
