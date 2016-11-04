@@ -1,71 +1,67 @@
-<!doctype html>
-<html lang="en">
-{% include head.html %}
-<body>
-  <main role="main">
-    <div class="grid grid-centered">
-      <div class="grid-cell">
-        {% include navigation.html %}
-        <article class="article reveal">
-          <header class="article-header">
-            <h1>{{ page.title }}</h1>
-            <p>{{ page.description }}</p>
-            <div class="article-list-footer">
-              <span class="article-list-date">
-                {{ page.date | date: "%B %-d, %Y" }}
-              </span>
-              <span class="article-list-divider">-</span>
-              <span class="article-list-minutes">
-                {% capture words %}
-                  {{ page.content | number_of_words }}
-                {% endcapture %}
-                {% unless words contains "-" %}
-                  {{ words | plus: 250 | divided_by: 250 | append: " minute read" }}
-                {% endunless %}
-              </span>
-              <span class="article-list-divider">-</span>
-              <div class="article-list-tags">
-                {% for tag in page.tags %}
-                  <a href="{{ site.baseurl }}tag/{{ tag }}">{{ tag }}</a>
-                {% endfor %}
-              </div>
+---
+layout: default
+---
+ 
+<div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	{% for category in page.categories %}
+                        	<button class="btn btn-white btn-xs" type="button">{{ category }}</button>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ page.date | date: "%-d %b %Y" }}</span>
+                        <h1>
+                            {{ page.title }}
+                        </h1>
+                    </div>
+                    	{{ content }}
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                {% for tag in page.tags %}
+                                    <button class="btn btn-white btn-xs" type="button">{{ tag }}</button>
+                                {% endfor %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div> 
+                                {% if site.changyan %}
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::{{post.url | prepend: page.url}}" class = "cy_cmt_count" ></span> comments
+                                {% endif %}
+                                {% if site.disqus %}
+                                <i class="fa fa-comments-o"> </i> <span class='disqus-comment-count' data-disqus-url="{{ site.url }}{{ page.url }}">0</span> comments
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            {% if site.donate %}
+                                {% include donate.html %}
+                            {% endif %}
+                            <br>
+                            <!-- share -->
+                            {% if site.bshare %}
+                                {% include share.html %}
+                            {% endif %}
+                            <br>
+                            <!-- comment -->
+                            {% include comments.html %}
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </header>
-
-          <div class="article-content">
-            {{ content }}
-          </div>
-
-          <div class="article-share">
-            {% assign page_title = page.title  | truncate '110' %}
-            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status={{ page_title }} - {{ site.url }}{{ page.url }} {% if site.social.twitter %}by @{{ site.social.twitter }}{% endif %}', 'newwindow', 'width=500, height=225'); return false;">
-              <span class="icon icon-social-twitter"></span>
-            </a>
-            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}', 'newwindow', 'width=500, height=500'); return false;">
-              <span class="icon icon-social-facebook"></span>
-            </a>
-            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url={{ site.url }}{{ page.url }}', 'newwindow', 'width=550, height=400'); return false;">
-              <span class="icon icon-social-googleplus"></span>
-            </a>
-          </div>
-
-          {% if site.discus_identifier %}
-            <div id="disqus_thread" class="article-comments"></div>
-            <script>
-              (function() {
-                  var d = document, s = d.createElement('script');
-                  s.src = '//{{ site.discus_identifier }}.disqus.com/embed.js';
-                  s.setAttribute('data-timestamp', +new Date());
-                  (d.head || d.body).appendChild(s);
-              })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          {% endif %}
-        </article>
-        {% include footer.html %}
-      </div>
+        </div>
     </div>
-  </main>
-  {% include javascripts.html %}
-</body>
-</html>
+
+</div>
