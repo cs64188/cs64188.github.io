@@ -126,4 +126,4 @@ jekyll serve --safe --watch
 
 
 
-接下来的步骤请参考：[Mac用户搭建GitHub-Pages(2)]({{ '/2016/11/09/MacConfig-Jrkyll(2)/' | prepend: site.baseurl  }})
+接下来的步骤请参考：[Mac用户搭建GitHub-Pages(2)]({{ '/2016/11/08/MacConfig-Jrkyll(2)/' | prepend: site.baseurl  }})
